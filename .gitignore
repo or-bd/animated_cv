@@ -1,0 +1,6 @@
+node_modules
+public
+ecosystem.json
+or_private.ppk
+.DS_Store
+.idea
