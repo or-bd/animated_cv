@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
@@ -9,7 +10,7 @@ module.exports = {
   entry: `${APP_DIR}/index.js`,
   output: {
     path: BUILD_DIR,
-    publicPath: BUILD_DIR,
+    publicPath: '/',
     filename: 'js/bundle.js',
   },
   module: {
@@ -84,18 +85,21 @@ module.exports = {
     ],
   },
   plugins: [
-    new UglifyJsPlugin({
-      parallel: true,
-      sourceMap: true,
-      uglifyOptions: {
-        toplevel: true,
-        output: {
-          comments: false,
-        },
-      },
-    }),
+    // new UglifyJsPlugin({
+    //   parallel: true,
+    //   sourceMap: true,
+    //   uglifyOptions: {
+    //     toplevel: true,
+    //     output: {
+    //       comments: false,
+    //     },
+    //   },
+    // }),
     new ExtractTextPlugin({
       filename: 'css/style.css',
+    }),
+    new HtmlWebpackPlugin({
+      template: `${APP_DIR}/index.html`,
     }),
   ],
   mode: 'production',
