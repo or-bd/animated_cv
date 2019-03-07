@@ -1,4 +1,4 @@
-#Animated CV
+# Animated CV
 
 Still thinking about few more features, but it's stable and you can use it :)
 
