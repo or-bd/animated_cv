@@ -6,12 +6,14 @@
   #app-list {
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .app {
       position: relative;
-      width: 10%;
-      display: inline-block;
-      margin-right: 10px;
+      width: 55px;
+      margin: 0 10px;
       text-align: center;
       overflow: hidden;
       padding: 5px;

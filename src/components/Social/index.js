@@ -14,9 +14,11 @@ const Social = () => {
 
   return (
     <AnimatedBox id="social" title="Social">
-      {nets.map(social => (
-        <i key={social.id} className={social.class} onClick={() => visitSocialPage(social.link)} />
-      ))}
+      <div id="platform-container">
+        {nets.map(social => (
+          <i key={social.id} className={social.class} onClick={() => visitSocialPage(social.link)} />
+        ))}
+      </div>
     </AnimatedBox>
   );
 };

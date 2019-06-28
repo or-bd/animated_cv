@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AnimatedBox from '../../common/AnimatedBox';
-import './style.scss';
 import { apps as appsList } from '../../common/config';
+import './style.scss';
 
 const MyApps = () => {
   const [apps, setApps] = useState(appsList);
@@ -29,7 +29,7 @@ const MyApps = () => {
   }, []);
 
   const setSelectedApp = (appId) => {
-    let selectedApp = { ...myApp };
+    let selectedApp = {};
     const appsClone = [...apps].map((app) => {
       if (app.id === appId && !app.class.includes('app-selected')) {
         app.class += ' app-selected';
@@ -44,18 +44,19 @@ const MyApps = () => {
     setMyApp(selectedApp);
   };
 
+  const GetAppList = () => (
+    <ul id="app-list">
+      {apps.map((app) => (
+        <li key={app.id} className={`app ${app.class}`} onClick={() => setSelectedApp(app.id)}>
+          <img src={require(`../../media/${app.logo}`)} alt={app.alt} />
+        </li>
+      ))}
+    </ul>
+  );
+
   return (
     <AnimatedBox id="my-apps" title="My Apps">
-      <ul id="app-list">
-        {apps.map((app) => {
-          const className = `app ${app.class}`;
-          return (
-            <li key={app.id} className={className} onClick={() => setSelectedApp(app.id)}>
-              <img src={require(`../../media/${app.logo}`)} alt={app.alt} />
-            </li>
-          );
-        })}
-      </ul>
+      <GetAppList />
       <div id="my-app" className={myApp.link ? 'fade-in' : 'no-opacity'}>
         <div id="description">
           <div>{myApp.description}</div>

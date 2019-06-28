@@ -2,14 +2,14 @@ import React from 'react';
 import AnimatedBox from '../../common/AnimatedBox';
 import { paragraphs } from '../../common/config';
 
-const Paragraphs = () => {
-  const paragraphsExist = () => Object.keys(paragraphs).length;
+const paragraphsExist = () => Object.keys(paragraphs).length;
 
-  const getAll = () => {
+const Paragraphs = () => {
+  const GetParagraphs = () => {
     const sections = [];
     for (const [label, text] of Object.entries(paragraphs)) {
       sections.push(
-        <AnimatedBox id={label} title={label}>
+        <AnimatedBox key={label} id={label} title={label}>
           <p>{text}</p>
         </AnimatedBox>,
       );
@@ -18,7 +18,7 @@ const Paragraphs = () => {
   };
 
   return (
-    paragraphsExist() && getAll()
+    paragraphsExist() && <GetParagraphs />
   );
 };
 

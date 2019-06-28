@@ -10,10 +10,10 @@ import MyApps from '../MyApps';
 import ProfilePhoto from '../ProfilePhoto';
 import Paragraphs from '../Paragraphs';
 
-const Cv = () => {
-  const isMobileDevice = isMobile();
+const isMobileDevice = isMobile();
 
-  const contactAndSocial = (
+const Cv = () => {
+  const GetContactAndSocial = () => (
     <React.Fragment>
       <Contact />
       <Social />
@@ -25,13 +25,13 @@ const Cv = () => {
       <aside>
         <ProfilePhoto />
         <Me />
-        {isMobileDevice ? '' : contactAndSocial}
+        {isMobileDevice ? '' : <GetContactAndSocial />}
       </aside>
       <main>
         <Skills />
         <Paragraphs />
         <MyApps />
-        {isMobileDevice ? contactAndSocial : ''}
+        {isMobileDevice ? <GetContactAndSocial /> : ''}
       </main>
     </div>
   );

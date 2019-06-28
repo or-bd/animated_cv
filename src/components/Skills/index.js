@@ -30,24 +30,20 @@ const Skills = () => {
   return (
     <AnimatedBox id="skills" title="Skills">
       <div id="skills-container">
-        {skills.map((skill) => {
-          const className = `skill ${skill.class}`;
-          return (
-            <div key={skill.id} className={className}>
-              <div className="skill-content">
-                <i className={skill.logo} />
-                <div className="skill-name">{skill.label}</div>
-              </div>
-              <div
-                className="level-fill"
-                style={{ height: `calc(${skill.level.current * 10}% - 17px)` }}
-              >
-                <Lottie animtion={wave} height={20} width={57} />
-              </div>
+        {skills.map((skill) => (
+          <div key={skill.id} className={`skill ${skill.class}`}>
+            <div className="skill-content">
+              <i className={skill.logo} />
+              <div className="skill-name">{skill.label}</div>
             </div>
-          );
-        })}
-        <div className="clear" />
+            <div
+              className="level-fill"
+              style={{ height: `calc(${skill.level.current * 10}% - 17px)` }}
+            >
+              <Lottie animtion={wave} height={20} width={57} />
+            </div>
+          </div>
+        ))}
       </div>
     </AnimatedBox>
   );
