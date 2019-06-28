@@ -1,7 +1,9 @@
 const { resolve } = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const { DEV_SERVER_PORT, SERVER_PORT } = require('./bin/ports.json');
+const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
+const { DEV_SERVER_PORT } = require('./config.json');
 
 const BUILD_DIR = resolve(__dirname, 'public');
 const APP_DIR = resolve(__dirname, 'src');
@@ -11,7 +13,7 @@ module.exports = {
   output: {
     path: BUILD_DIR,
     publicPath: '/',
-    filename: 'js/bundle.js',
+    filename: 'js/[name].js',
   },
   module: {
     rules: [
@@ -42,7 +44,7 @@ module.exports = {
         }),
       },
       {
-        test: /\.(png|jpg|gif|ico)$/,
+        test: /\.(mp3|png|jpg|gif|ico)$/,
         use: [
           {
             loader: 'file-loader',
@@ -54,7 +56,8 @@ module.exports = {
         ],
       },
       {
-        test: /\.(txt|xml)$/,
+        type: 'javascript/auto',
+        test: /\.(txt|xml|json)$/,
         use: [
           {
             loader: 'file-loader',
@@ -85,14 +88,19 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: `${APP_DIR}/index.html`,
     }),
+    new webpack.DefinePlugin({
+      ENVIRONMENT: JSON.stringify('DEV'),
+    }),
+    new ServiceWorkerWebpackPlugin({
+      entry: `${APP_DIR}/sw.js`,
+    }),
   ],
   devServer: {
     contentBase: APP_DIR,
     compress: true,
+    historyApiFallback: true,
     port: DEV_SERVER_PORT,
-    proxy: {
-      '/api': `http://localhost:${SERVER_PORT}`,
-    },
+    host: '0.0.0.0',
   },
   mode: 'development',
 };
