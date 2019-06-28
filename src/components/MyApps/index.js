@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import AnimatedBox from '../../common/AnimatedBox';
-import { apps as appsList } from '../../common/config';
+import Cv from '../../common/CvData';
 import './style.scss';
 
 const MyApps = () => {
-  const [apps, setApps] = useState(appsList);
+  const [apps, setApps] = useState(Cv.apps);
   const [myApp, setMyApp] = useState({});
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const MyApps = () => {
 
   const GetAppList = () => (
     <ul id="app-list">
-      {apps.map((app) => (
+      {apps.map(app => (
         <li key={app.id} className={`app ${app.class}`} onClick={() => setSelectedApp(app.id)}>
           <img src={require(`../../media/${app.logo}`)} alt={app.alt} />
         </li>

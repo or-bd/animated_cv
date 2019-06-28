@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
 
 const BUILD_DIR = resolve(__dirname, 'public');
 const APP_DIR = resolve(__dirname, 'src');
@@ -110,9 +109,6 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       ENVIRONMENT: JSON.stringify('PROD'),
-    }),
-    new ServiceWorkerWebpackPlugin({
-      entry: `${APP_DIR}/sw.js`,
     }),
   ],
   devtool: 'source-map',

@@ -2,8 +2,7 @@ const { resolve } = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
-const { DEV_SERVER_PORT } = require('./config.json');
+const { DEV_SERVER_PORT } = require('./bin/ports');
 
 const BUILD_DIR = resolve(__dirname, 'public');
 const APP_DIR = resolve(__dirname, 'src');
@@ -90,9 +89,6 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       ENVIRONMENT: JSON.stringify('DEV'),
-    }),
-    new ServiceWorkerWebpackPlugin({
-      entry: `${APP_DIR}/sw.js`,
     }),
   ],
   devServer: {

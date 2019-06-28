@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Lottie from '../../common/LottieAnimation';
 import wave from './wave';
 import AnimatedBox from '../../common/AnimatedBox';
-import { skills as skillsList } from '../../common/config';
+import Cv from '../../common/CvData';
 import './style.scss';
 
-const skillsIndexes = Object.keys(skillsList).sort(() => Math.random() - 0.5);
+const skillsIndexes = Object.keys(Cv.skills).sort(() => Math.random() - 0.5);
 
 const Skills = () => {
-  const [skills, setSkills] = useState(skillsList);
+  const [skills, setSkills] = useState(Cv.skills);
 
   useEffect(() => {
     let timeout = null;
@@ -30,7 +30,7 @@ const Skills = () => {
   return (
     <AnimatedBox id="skills" title="Skills">
       <div id="skills-container">
-        {skills.map((skill) => (
+        {skills.map(skill => (
           <div key={skill.id} className={`skill ${skill.class}`}>
             <div className="skill-content">
               <i className={skill.logo} />

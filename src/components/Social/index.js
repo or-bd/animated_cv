@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import AnimatedBox from '../../common/AnimatedBox';
-import { social as networks } from '../../common/config';
+import Cv from '../../common/CvData';
 import './style.scss';
 
 const Social = () => {
-  const [nets] = useState(networks);
+  const [nets] = useState(Cv.social);
 
   const visitSocialPage = (link) => {
     setTimeout(() => {
